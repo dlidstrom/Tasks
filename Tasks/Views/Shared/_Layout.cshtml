@@ -1,0 +1,25 @@
+﻿<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <title>AngularJS</title>
+        <link rel="stylesheet"
+              type="text/css"
+              href="@Url.Content("~/Content/bootstrap-3.0.3/css/bootstrap.min.css")">
+        <style>
+            .ng-cloak {
+                display: none;
+            }
+        </style>
+    </head>
+    <body ng-app="App">
+        <div class="container ng-cloak">
+            @RenderBody()
+        </div>
+        <script src="@Url.Content("~/Content/angularjs-1.2.7/angular.js")"></script>
+        <script src="@Url.Content("~/Content/app/app.js")"></script>
+        <script src="@Url.Content("~/Content/app/initialdata.js")"></script>
+        @RenderSection("scripts", false)
+    </body>
+</html>
