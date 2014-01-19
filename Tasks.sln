@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks", "Tasks\Tasks.csproj", "{82C7F894-6602-4775-91D2-5144355EB7B1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tasks.JasmineSpecs", "Tasks.JasmineSpecs\Tasks.JasmineSpecs.vcxproj", "{99825D12-9B32-435D-93C9-9C763175F016}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.Tests", "Tasks.Tests\Tasks.Tests.csproj", "{56B9FFC8-A5FC-4CA5-9E8A-3E8C36788849}"
 EndProject
 Global
@@ -27,16 +25,6 @@ Global
 		{82C7F894-6602-4775-91D2-5144355EB7B1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{82C7F894-6602-4775-91D2-5144355EB7B1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{82C7F894-6602-4775-91D2-5144355EB7B1}.Release|Win32.ActiveCfg = Release|Any CPU
-		{99825D12-9B32-435D-93C9-9C763175F016}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Debug|Win32.ActiveCfg = Debug|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Debug|Win32.Build.0 = Debug|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Release|Any CPU.ActiveCfg = Release|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Release|Win32.ActiveCfg = Release|Win32
-		{99825D12-9B32-435D-93C9-9C763175F016}.Release|Win32.Build.0 = Release|Win32
 		{56B9FFC8-A5FC-4CA5-9E8A-3E8C36788849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56B9FFC8-A5FC-4CA5-9E8A-3E8C36788849}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56B9FFC8-A5FC-4CA5-9E8A-3E8C36788849}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
