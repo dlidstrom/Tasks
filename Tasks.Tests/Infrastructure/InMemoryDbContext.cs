@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
+using System.Data.Entity;
 using Tasks.Models;
 
-namespace Tasks.Tests
+namespace Tasks.Tests.Infrastructure
 {
     public class InMemoryDbContext : IDbContext
     {

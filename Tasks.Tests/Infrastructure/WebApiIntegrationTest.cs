@@ -6,13 +6,13 @@ using NUnit.Framework;
 using Tasks.Infrastructure;
 using Tasks.Models;
 
-namespace Tasks.Tests
+namespace Tasks.Tests.Infrastructure
 {
     public abstract class WebApiIntegrationTest
     {
-        protected InMemoryDbContext Context { get; set; }
+        protected InMemoryDbContext Context { get; private set; }
 
-        protected HttpClient Client { get; set; }
+        protected HttpClient Client { get; private set; }
 
         [SetUp]
         public void SetUp()
@@ -29,7 +29,18 @@ namespace Tasks.Tests
             OnSetUp();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            OnTearDown();
+            MvcApplication.Shutdown();
+        }
+
         protected virtual void OnSetUp()
+        {
+        }
+
+        protected virtual void OnTearDown()
         {
         }
     }

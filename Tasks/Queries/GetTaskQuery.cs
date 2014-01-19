@@ -4,7 +4,7 @@ using Tasks.Models;
 
 namespace Tasks.Queries
 {
-    public class GetTaskQuery : IQuery<TaskModel>
+    public class GetTaskQuery : IQuery<GetTaskQuery.Result>
     {
         private readonly string responsible;
         private readonly string task;
@@ -17,9 +17,28 @@ namespace Tasks.Queries
             this.task = task;
         }
 
-        public TaskModel Execute(IDbContext context)
+        public Result Execute(IDbContext context)
         {
-            return context.Tasks.SingleOrDefault(x => x.Task == task && x.Responsible.Name == responsible);
+            var local = context.Tasks.Local.SingleOrDefault(x => x.Task == task && x.Responsible.Name == responsible);
+            if (local != null) return new Result(local);
+            var existing = context.Tasks.SingleOrDefault(x => x.Task == task && x.Responsible.Name == responsible);
+            return existing != null ? new Result(existing) : null;
+        }
+
+        public class Result
+        {
+            public Result(TaskModel taskModel)
+            {
+                Responsible = taskModel.Responsible.Name;
+                Task = taskModel.Task;
+                Done = taskModel.Done;
+            }
+
+            public string Responsible { get; set; }
+
+            public string Task { get; set; }
+
+            public bool Done { get; set; }
         }
     }
 }

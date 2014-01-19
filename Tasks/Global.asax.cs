@@ -34,6 +34,12 @@ namespace Tasks
                 new WindsorHttpDependencyResolver(container.Kernel);
         }
 
+        public static void Shutdown()
+        {
+            RouteTable.Routes.Clear();
+            container.Dispose();
+        }
+
         protected void Application_Start()
         {
             Configure(CreateContainer(), GlobalConfiguration.Configuration);

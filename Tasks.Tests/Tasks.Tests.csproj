@@ -73,14 +73,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InMemoryDbContext.cs" />
-    <Compile Include="InMemoryDbSet.cs" />
-    <Compile Include="Task_Post.cs" />
+    <Compile Include="Api\Task_Delete.cs" />
+    <Compile Include="Api\Task_Post.cs" />
+    <Compile Include="Api\Task_Put.cs" />
+    <Compile Include="Infrastructure\InMemoryDbContext.cs" />
+    <Compile Include="Infrastructure\InMemoryDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebApiIntegrationTest.cs" />
+    <Compile Include="Infrastructure\WebApiIntegrationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,7 @@
       <Name>Tasks</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

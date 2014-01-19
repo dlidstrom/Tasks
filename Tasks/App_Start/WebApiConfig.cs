@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 using Tasks.Infrastructure;
 
 namespace Tasks.App_Start
@@ -13,6 +14,10 @@ namespace Tasks.App_Start
                 defaults: new { id = RouteParameter.Optional });
 
             config.Filters.Add(new SaveChangesAttribute());
+
+            // camelCase by default
+            var formatter = config.Formatters.JsonFormatter;
+            formatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }

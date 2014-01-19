@@ -14,7 +14,10 @@ namespace Tasks.Controllers.Api
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Task already exists");
 
             ExecuteCommand(new AddTaskCommand(request.Responsible, request.Task));
-            return Request.CreateResponse(HttpStatusCode.Created);
+            var task = ExecuteQuery(new GetTaskQuery(request.Responsible, request.Task));
+            return Request.CreateResponse(
+                HttpStatusCode.Created,
+                task);
         }
 
         public HttpResponseMessage Put(TaskRequest request)
