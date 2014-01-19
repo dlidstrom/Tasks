@@ -10,6 +10,12 @@ namespace Tasks.Models
             Name = name;
         }
 
+        private Person()
+        {
+        }
+
+        public int Id { get; set; }
+
         public string Name { get; set; }
     }
 }

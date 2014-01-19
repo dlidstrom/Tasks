@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Web;
-using System.Web.Caching;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Castle.Windsor;
 using Tasks.App_Start;
+using Tasks.Infrastructure;
+using Tasks.Migrations;
 using Tasks.Models;
 
 namespace Tasks
 {
     public class MvcApplication : HttpApplication
     {
+        private static IWindsorContainer container;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -20,39 +23,24 @@ namespace Tasks
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            SetupFakeDatabase();
+            CreateContainer();
+            var strategy = new MigrateDatabaseToLatestVersion<
+                Context,
+                Configuration>();
+            Database.SetInitializer(strategy);
         }
 
-        private static void SetupFakeDatabase()
+        private static void CreateContainer()
         {
-            HttpContext.Current.Cache.Add(
-                "tasks",
-                new List<TaskModel>
-                    {
-                        new TaskModel("Implementation", "Daniel")
-                    },
-                null,
-                Cache.NoAbsoluteExpiration,
-                TimeSpan.Zero,
-                CacheItemPriority.Default,
-                (key, value, reason) => { });
+            container = new WindsorContainer().Install(
+                new ControllerInstaller(),
+                new WindsorWebApiInstaller(),
+                new ControllerFactoryInstaller(),
+                new ContextInstaller());
 
-            HttpContext.Current.Cache.Add(
-                "people",
-                new List<Person>
-                    {
-                        new Person("Daniel"),
-                        new Person("Johan"),
-                        new Person("Fredrik"),
-                        new Person("Sandra"),
-                        new Person("Klas"),
-                        new Person("Nina")
-                    },
-                null,
-                Cache.NoAbsoluteExpiration,
-                TimeSpan.Zero,
-                CacheItemPriority.Default,
-                (key, value, reason) => { });
+            DependencyResolver.SetResolver(new WindsorMvcDependencyResolver(container));
+            GlobalConfiguration.Configuration.DependencyResolver =
+                new WindsorHttpDependencyResolver(container.Kernel);
         }
     }
 }

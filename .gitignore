@@ -31,3 +31,5 @@ packages
 Tasks.JasmineSpecs/Tasks.JasmineSpecs.vcxproj.filters
 Tasks.opensdf
 Tasks.sdf
+Tasks/App_Data/db.mdf
+Tasks/App_Data/db_log.ldf

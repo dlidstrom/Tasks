@@ -4,7 +4,7 @@ namespace Tasks.Models
 {
     public class TaskModel
     {
-        public TaskModel(string task, string responsible)
+        public TaskModel(string task, Person responsible)
         {
             if (task == null) throw new ArgumentNullException("task");
             if (responsible == null) throw new ArgumentNullException("responsible");
@@ -13,9 +13,17 @@ namespace Tasks.Models
             Done = false;
         }
 
+        private TaskModel()
+        {
+        }
+
+        public int Id { get; set; }
+
         public string Task { get; private set; }
 
-        public string Responsible { get; private set; }
+        public Person Responsible { get; private set; }
+
+        public int ResponsibleId { get; set; }
 
         public bool Done { get; private set; }
 

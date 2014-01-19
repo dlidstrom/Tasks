@@ -1,41 +1,31 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
-using Tasks.Models;
+using Tasks.Commands;
+using Tasks.Queries;
 
 namespace Tasks.Controllers.Api
 {
-    public class TaskController : ApiController
+    public class TaskController : ApiControllerBase
     {
         public HttpResponseMessage Post(TaskRequest request)
         {
-            var tasks = (List<TaskModel>)HttpContext.Current.Cache.Get("tasks");
-            if (tasks.Any(x => x.Task == request.Task && x.Responsible == request.Responsible))
+            if (ExecuteQuery(new GetTaskQuery(request.Responsible, request.Task)) != null)
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Task already exists");
 
-            tasks.Add(new TaskModel(request.Task, request.Responsible));
+            ExecuteCommand(new AddTaskCommand(request.Responsible, request.Task));
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
         public HttpResponseMessage Put(TaskRequest request)
         {
-            var tasks = (List<TaskModel>)HttpContext.Current.Cache.Get("tasks");
-            var task = tasks.SingleOrDefault(x => x.Task == request.Task && x.Responsible == request.Responsible);
-            if (task == null)
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No task found");
-
-            task.SetDone(request.Done);
+            ExecuteCommand(new ChangeTaskCommand(request.Responsible, request.Task, request.Done));
             return Request.CreateResponse(HttpStatusCode.Accepted);
         }
 
         public HttpResponseMessage Delete([FromUri] TaskRequest request)
         {
-            var tasks = (List<TaskModel>)HttpContext.Current.Cache.Get("tasks");
-            var task = tasks.SingleOrDefault(x => x.Task == request.Task && x.Responsible == request.Responsible);
-            if (task != null) tasks.Remove(task);
+            ExecuteCommand(new DeleteTaskCommand(request.Responsible, request.Task));
             return Request.CreateResponse(HttpStatusCode.Accepted);
         }
 
