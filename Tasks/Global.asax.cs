@@ -15,32 +15,37 @@ namespace Tasks
     {
         private static IWindsorContainer container;
 
-        protected void Application_Start()
+        public static void Configure(
+            IWindsorContainer windsorContainer,
+            HttpConfiguration configuration)
         {
-            AreaRegistration.RegisterAllAreas();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            container = windsorContainer;
+            //AreaRegistration.RegisterAllAreas();
+            WebApiConfig.Register(configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            CreateContainer();
             var strategy = new MigrateDatabaseToLatestVersion<
                 Context,
                 Configuration>();
             Database.SetInitializer(strategy);
+            DependencyResolver.SetResolver(new WindsorMvcDependencyResolver(container));
+            configuration.DependencyResolver =
+                new WindsorHttpDependencyResolver(container.Kernel);
         }
 
-        private static void CreateContainer()
+        protected void Application_Start()
         {
-            container = new WindsorContainer().Install(
+            Configure(CreateContainer(), GlobalConfiguration.Configuration);
+        }
+
+        private static IWindsorContainer CreateContainer()
+        {
+            return new WindsorContainer().Install(
                 new ControllerInstaller(),
                 new WindsorWebApiInstaller(),
                 new ControllerFactoryInstaller(),
                 new ContextInstaller());
-
-            DependencyResolver.SetResolver(new WindsorMvcDependencyResolver(container));
-            GlobalConfiguration.Configuration.DependencyResolver =
-                new WindsorHttpDependencyResolver(container.Kernel);
         }
     }
 }
