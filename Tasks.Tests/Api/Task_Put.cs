@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using NUnit.Framework;
 using Tasks.Models;
-using Tasks.Tests.Infrastructure;
+using Tasks.Tests.Api.Infrastructure;
 
 namespace Tasks.Tests.Api
 {

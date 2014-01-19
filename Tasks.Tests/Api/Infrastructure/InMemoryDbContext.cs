@@ -1,7 +1,7 @@
 using System.Data.Entity;
 using Tasks.Models;
 
-namespace Tasks.Tests.Infrastructure
+namespace Tasks.Tests.Api.Infrastructure
 {
     public class InMemoryDbContext : IDbContext
     {

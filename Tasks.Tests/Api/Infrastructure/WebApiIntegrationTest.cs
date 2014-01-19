@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Tasks.Infrastructure;
 using Tasks.Models;
 
-namespace Tasks.Tests.Infrastructure
+namespace Tasks.Tests.Api.Infrastructure
 {
     public abstract class WebApiIntegrationTest
     {

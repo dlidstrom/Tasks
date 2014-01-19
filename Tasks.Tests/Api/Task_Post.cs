@@ -5,7 +5,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Tasks.Models;
-using Tasks.Tests.Infrastructure;
+using Tasks.Tests.Api.Infrastructure;
 
 namespace Tasks.Tests.Api
 {

@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Tasks.Tests.Infrastructure
+namespace Tasks.Tests.Api.Infrastructure
 {
     public sealed class InMemoryDbSet<T> : IDbSet<T> where T : class
     {
