@@ -101,6 +101,7 @@
     <Content Include="run-jasmine.js" />
     <Content Include="SpecRunner.html" />
     <Content Include="spec\tasksctrl.spec.js" />
+    <Content Include="spec\taskservice.spec.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
