@@ -1,5 +1,5 @@
 using System.Data.Entity;
-using Tasks.Models;
+using Tasks.Data.Models;
 
 namespace Tasks.Tests.Api.Infrastructure
 {

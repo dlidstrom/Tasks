@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Net;
 using NUnit.Framework;
-using Tasks.Models;
+using Tasks.Data.Models;
 using Tasks.Tests.Api.Infrastructure;
 
 namespace Tasks.Tests.Api

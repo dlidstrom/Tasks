@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using Tasks.Models;
-using Tasks.Queries;
+using Tasks.Data.Models;
+using Tasks.Data.Queries;
 
 namespace Tasks.Controllers
 {

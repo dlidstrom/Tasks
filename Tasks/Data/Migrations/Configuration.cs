@@ -1,7 +1,7 @@
 using System.Data.Entity.Migrations;
-using Tasks.Models;
+using Tasks.Data.Models;
 
-namespace Tasks.Migrations
+namespace Tasks.Data.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<Context>
     {

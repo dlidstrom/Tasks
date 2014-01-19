@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Tasks.Commands;
-using Tasks.Queries;
+using Tasks.Data.Commands;
+using Tasks.Data.Queries;
 
 namespace Tasks.Controllers.Api
 {

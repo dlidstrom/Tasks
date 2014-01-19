@@ -1,6 +1,6 @@
-using Tasks.Models;
+using Tasks.Data.Models;
 
-namespace Tasks.Queries
+namespace Tasks.Data.Queries
 {
     public interface IQuery<out TResult>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Tasks.Models
+namespace Tasks.Data.Models
 {
     public interface IDbContext
     {

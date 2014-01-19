@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tasks.Models
+namespace Tasks.Data.Models
 {
     public class TaskModel
     {

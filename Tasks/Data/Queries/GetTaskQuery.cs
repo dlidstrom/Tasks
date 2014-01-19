@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Tasks.Models;
+using Tasks.Data.Models;
 
-namespace Tasks.Queries
+namespace Tasks.Data.Queries
 {
     public class GetTaskQuery : IQuery<GetTaskQuery.Result>
     {

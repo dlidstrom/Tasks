@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Tasks.Queries;
+using Tasks.Data.Queries;
 
 namespace Tasks.Controllers
 {

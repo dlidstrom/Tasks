@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Tasks.Models;
+using Tasks.Data.Models;
 using Tasks.Tests.Api.Infrastructure;
 
 namespace Tasks.Tests.Api

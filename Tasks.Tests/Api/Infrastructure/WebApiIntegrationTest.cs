@@ -3,8 +3,8 @@ using System.Web.Http;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using NUnit.Framework;
+using Tasks.Data.Models;
 using Tasks.Infrastructure;
-using Tasks.Models;
 
 namespace Tasks.Tests.Api.Infrastructure
 {

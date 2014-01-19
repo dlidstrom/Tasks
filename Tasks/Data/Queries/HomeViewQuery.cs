@@ -1,9 +1,9 @@
 using System;
 using System.Data.Entity;
 using System.Linq;
-using Tasks.Models;
+using Tasks.Data.Models;
 
-namespace Tasks.Queries
+namespace Tasks.Data.Queries
 {
     public class HomeViewQuery : IQuery<HomeViewQuery.Result>
     {

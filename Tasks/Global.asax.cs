@@ -5,9 +5,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Windsor;
 using Tasks.App_Start;
+using Tasks.Data.Migrations;
+using Tasks.Data.Models;
 using Tasks.Infrastructure;
-using Tasks.Migrations;
-using Tasks.Models;
 
 namespace Tasks
 {

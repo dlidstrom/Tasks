@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Http;
-using Tasks.Commands;
-using Tasks.Models;
-using Tasks.Queries;
+using Tasks.Data.Commands;
+using Tasks.Data.Models;
+using Tasks.Data.Queries;
 
 namespace Tasks.Controllers.Api
 {

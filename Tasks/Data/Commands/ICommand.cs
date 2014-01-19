@@ -1,6 +1,6 @@
-using Tasks.Models;
+using Tasks.Data.Models;
 
-namespace Tasks.Commands
+namespace Tasks.Data.Commands
 {
     public interface ICommand
     {

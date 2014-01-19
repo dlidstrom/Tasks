@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Tasks.Extensions
+namespace Tasks.Infrastructure.Extensions
 {
     public static class HtmlExtensions
     {
