@@ -136,27 +136,30 @@ page.open(system.args[1], function (status) {
                         suites[suite] = suites[suite] || [];
                         suites[suite].push({ suite: suite, status: 'failed', name: name, message: name + ': ' + msg });
                     }
+                }
 
-                    for (var suite in suites) {
-                        var tests = suites[suite];
-                        console.log('TEAMCITY_SUITESTARTED:' + JSON.stringify({ suite: suite }));
-                        for (var i in tests) {
-                            var test = tests[i];
-                            console.log('TEAMCITY_TESTSTARTED:' + JSON.stringify({ name: test.name }));
-                            if (test.status === 'success') {
-                            }
-                            else if (test.status === 'failed') {
-                                console.log('TEAMCITY_TESTFAILED:' + JSON.stringify({ name: test.name, message: test.message }));
-                                console.log('');
-                                console.log(test.suite);
-                                console.log(test.message);
-                            }
-
-                            console.log('TEAMCITY_TESTFINISHED:' + JSON.stringify({ name: test.name }));
+                for (var suite in suites) {
+                    var tests = suites[suite];
+                    console.log('TEAMCITY_SUITESTARTED:' + JSON.stringify({ suite: suite }));
+                    for (var i in tests) {
+                        var test = tests[i];
+                        console.log('TEAMCITY_TESTSTARTED:' + JSON.stringify({ name: test.name }));
+                        if (test.status === 'success') {
+                        }
+                        else if (test.status === 'failed') {
+                            console.log('TEAMCITY_TESTFAILED:' + JSON.stringify({ name: test.name, message: test.message }));
+                            console.log('');
+                            console.log(test.suite);
+                            console.log(test.message);
                         }
 
-                        console.log('TEAMCITY_SUITEFINISHED:' + JSON.stringify({ suite: suite }));
+                        console.log('TEAMCITY_TESTFINISHED:' + JSON.stringify({ name: test.name }));
                     }
+
+                    console.log('TEAMCITY_SUITEFINISHED:' + JSON.stringify({ suite: suite }));
+                }
+
+                if (failedList && failedList.length > 0) {                    
                     return 1;
                 } else {
                     console.log(document.body.querySelector('.alert > .passingAlert.bar').innerText);
