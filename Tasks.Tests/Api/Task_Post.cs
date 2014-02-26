@@ -16,10 +16,7 @@ namespace Tasks.Tests.Api
         public void CreatesNewTask()
         {
             // Arrange
-            Context.Persons = new InMemoryDbSet<Person>
-                {
-                    new Person("Somebody")
-                };
+            Context.Persons.Add(new Person("Somebody"));
 
             // Act
             var request = new
@@ -40,10 +37,7 @@ namespace Tasks.Tests.Api
         public void ReturnsNaturalKey()
         {
             // Arrange
-            Context.Persons = new InMemoryDbSet<Person>
-                {
-                    new Person("Somebody")
-                };
+            Context.Persons.Add(new Person("Somebody"));
 
             // Act
             var request = new

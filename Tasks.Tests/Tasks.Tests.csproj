@@ -73,6 +73,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Infrastructure\TestDbAsyncEnumerable.cs" />
+    <Compile Include="Api\Infrastructure\TestDbAsyncEnumerator.cs" />
+    <Compile Include="Api\Infrastructure\TestDbAsyncQueryProvider.cs" />
     <Compile Include="Api\Task_Delete.cs" />
     <Compile Include="Api\Task_Post.cs" />
     <Compile Include="Api\Task_Put.cs" />
@@ -84,7 +87,7 @@
   <ItemGroup>
     <None Include="Web\lib\jasmine-1.3.1\MIT.LICENSE" />
     <None Include="packages.config" />
-    <None Include="Web\run.bat" />
+    <None Include="Web\run.cmd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tasks\Tasks.csproj">
@@ -100,19 +103,20 @@
     <Content Include="Web\lib\jasmine-1.3.1\jasmine.js" />
     <Content Include="Web\run-jasmine.js" />
     <Content Include="Web\SpecRunner.html" />
+    <Content Include="Web\spec\failing.spec.js" />
     <Content Include="Web\spec\tasksctrl.spec.js" />
     <Content Include="Web\spec\taskservice.spec.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>cd ..\..\Web
-..\..\Tools\phantomjs-1.8.1-windows\phantomjs.exe run-jasmine.js SpecRunner.html</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets. -->
   <Target Name="BeforeBuild">
+    <Exec Command="Call Web\run.cmd" />
   </Target>
   <Target Name="AfterBuild">
   </Target>
-  -->
 </Project>

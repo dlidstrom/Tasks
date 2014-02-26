@@ -4,7 +4,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Windsor;
-using Tasks.App_Start;
 using Tasks.Data.Migrations;
 using Tasks.Data.Models;
 using Tasks.Infrastructure;
@@ -20,6 +19,7 @@ namespace Tasks
             HttpConfiguration configuration)
         {
             container = windsorContainer;
+
             //AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -16,14 +16,8 @@ namespace Tasks.Tests.Api
         {
             // Arrange
             var person = new Person("Somebody");
-            Context.Persons = new InMemoryDbSet<Person>
-                {
-                    person
-                };
-            Context.Tasks = new InMemoryDbSet<TaskModel>
-                {
-                    new TaskModel("Some task", person)
-                };
+            Context.Persons.Add(person);
+            Context.Tasks.Add(new TaskModel("Some task", person));
 
             // Act
             var request = new

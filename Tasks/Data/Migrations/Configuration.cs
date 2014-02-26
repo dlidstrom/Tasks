@@ -7,7 +7,6 @@ namespace Tasks.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;
         }
 

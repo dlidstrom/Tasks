@@ -1,5 +1,6 @@
 using System;
-using System.Linq;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using Tasks.Data.Models;
 
 namespace Tasks.Data.Commands
@@ -19,13 +20,14 @@ namespace Tasks.Data.Commands
             this.done = done;
         }
 
-        public void Execute(IDbContext context)
+        public async Task Execute(IDbContext context)
         {
-            var existingTask = context.Tasks.SingleOrDefault(
-                x => x.Responsible.Name == responsible
-                     && x.Task == task);
+            var existingTask = await context.Tasks.SingleOrDefaultAsync(
+                x => x.Responsible.Name == responsible && x.Task == task);
+
             if (existingTask == null)
                 throw new ApplicationException("No task found");
+
             existingTask.SetDone(done);
         }
     }

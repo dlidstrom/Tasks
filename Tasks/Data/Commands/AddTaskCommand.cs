@@ -1,4 +1,5 @@
-using System.Linq;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using Tasks.Data.Models;
 
 namespace Tasks.Data.Commands
@@ -14,9 +15,9 @@ namespace Tasks.Data.Commands
             this.task = task;
         }
 
-        public void Execute(IDbContext context)
+        public async Task Execute(IDbContext context)
         {
-            var person = context.Persons.SingleOrDefault(x => x.Name == responsible);
+            var person = await context.Persons.SingleOrDefaultAsync(x => x.Name == responsible);
             context.Tasks.Add(new TaskModel(task, person));
         }
     }

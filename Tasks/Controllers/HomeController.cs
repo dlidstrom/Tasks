@@ -1,13 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using Tasks.Data.Queries;
 
 namespace Tasks.Controllers
 {
     public class HomeController : ControllerBase
     {
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var initialData = ExecuteQuery(new HomeViewQuery());
+            var initialData = await ExecuteQueryAsync(new HomeViewQuery());
             return View(initialData);
         }
     }

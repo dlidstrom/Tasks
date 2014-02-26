@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tasks.Data.Models
 {
@@ -19,6 +20,8 @@ namespace Tasks.Data.Models
 
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(1024)]
         public string Task { get; private set; }
 
         public Person Responsible { get; private set; }

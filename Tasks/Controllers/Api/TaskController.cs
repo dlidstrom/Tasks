@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Tasks.Data.Commands;
 using Tasks.Data.Queries;
@@ -8,13 +9,13 @@ namespace Tasks.Controllers.Api
 {
     public class TaskController : ApiControllerBase
     {
-        public HttpResponseMessage Post(TaskRequest request)
+        public async Task<HttpResponseMessage> Post(TaskRequest request)
         {
-            if (ExecuteQuery(new GetTaskQuery(request.Responsible, request.Task)) != null)
+            if (await ExecuteQueryAsync(new GetTaskQuery(request.Responsible, request.Task)) != null)
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Task already exists");
 
             ExecuteCommand(new AddTaskCommand(request.Responsible, request.Task));
-            var task = ExecuteQuery(new GetTaskQuery(request.Responsible, request.Task));
+            var task = await ExecuteQueryAsync(new GetTaskQuery(request.Responsible, request.Task));
             return Request.CreateResponse(
                 HttpStatusCode.Created,
                 task);

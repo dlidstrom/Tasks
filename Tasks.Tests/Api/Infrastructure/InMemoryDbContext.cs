@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Threading.Tasks;
 using Tasks.Data.Models;
 
 namespace Tasks.Tests.Api.Infrastructure
@@ -11,13 +12,18 @@ namespace Tasks.Tests.Api.Infrastructure
             Tasks = new InMemoryDbSet<TaskModel>();
         }
 
-        public IDbSet<Person> Persons { get; set; }
+        public IDbSet<Person> Persons { get; private set; }
 
-        public IDbSet<TaskModel> Tasks { get; set; }
+        public IDbSet<TaskModel> Tasks { get; private set; }
 
         public int SaveChanges()
         {
             return 0;
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return Task.FromResult(0);
         }
     }
 }

@@ -2,7 +2,9 @@
 using Newtonsoft.Json.Serialization;
 using Tasks.Infrastructure;
 
-namespace Tasks.App_Start
+// ReSharper disable CheckNamespace
+namespace Tasks
+// ReSharper restore CheckNamespace
 {
     public static class WebApiConfig
     {

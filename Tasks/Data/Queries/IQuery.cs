@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
 using Tasks.Data.Models;
 
 namespace Tasks.Data.Queries
 {
-    public interface IQuery<out TResult>
+    public interface IQuery<TResult>
     {
-        TResult Execute(IDbContext context);
+        Task<TResult> ExecuteAsync(IDbContext context);
     }
 }

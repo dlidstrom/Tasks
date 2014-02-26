@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Tasks.Tests.Api.Infrastructure
 {
-    public sealed class InMemoryDbSet<T> : IDbSet<T> where T : class
+    public sealed class InMemoryDbSet<T> : IDbSet<T>, IDbAsyncEnumerable<T> where T : class
     {
         private readonly HashSet<T> data;
         private readonly IQueryable<T> query;
@@ -35,7 +36,7 @@ namespace Tasks.Tests.Api.Infrastructure
 
         public IQueryProvider Provider
         {
-            get { return query.Provider; }
+            get { return new TestDbAsyncQueryProvider<T>(query.Provider); }
         }
 
         public IQueryable<T> AsQueryable()
@@ -84,6 +85,16 @@ namespace Tasks.Tests.Api.Infrastructure
         IEnumerator IEnumerable.GetEnumerator()
         {
             return data.GetEnumerator();
+        }
+
+        public IDbAsyncEnumerator<T> GetAsyncEnumerator()
+        {
+            return new TestDbAsyncEnumerator<T>(GetEnumerator());
+        }
+
+        IDbAsyncEnumerator IDbAsyncEnumerable.GetAsyncEnumerator()
+        {
+            return GetAsyncEnumerator();
         }
     }
 }

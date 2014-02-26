@@ -1,20 +1,20 @@
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using Tasks.Data.Models;
 
 namespace Tasks.Data.Queries
 {
     public class HomeViewQuery : IQuery<HomeViewQuery.Result>
     {
-        public Result Execute(IDbContext context)
+        public async Task<Result> ExecuteAsync(IDbContext context)
         {
-            var tasks = context.Tasks
-                               .Include(x => x.Responsible)
-                               .ToArray()
-                               .Select(x => new TaskViewModel(x));
-            var people = context.Persons.ToArray();
-            return new Result(tasks, people);
+            var tasks = await context.Tasks
+                                     .Include(x => x.Responsible)
+                                     .ToArrayAsync();
+            var people = await context.Persons.ToArrayAsync();
+            return new Result(tasks.Select(x => new TaskViewModel(x)), people);
         }
 
         public class Result
@@ -25,9 +25,9 @@ namespace Tasks.Data.Queries
                 People = people;
             }
 
-            public object Tasks { get; set; }
+            public object Tasks { get; private set; }
 
-            public object People { get; set; }
+            public object People { get; private set; }
         }
 
         private class TaskViewModel
@@ -40,11 +40,11 @@ namespace Tasks.Data.Queries
                 Done = taskModel.Done;
             }
 
-            public string Task { get; set; }
+            public string Task { get; private set; }
 
-            public string Responsible { get; set; }
+            public string Responsible { get; private set; }
 
-            public bool Done { get; set; }
+            public bool Done { get; private set; }
         }
     }
 }

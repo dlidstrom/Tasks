@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Tasks.Data.Commands;
 using Tasks.Data.Models;
@@ -10,15 +11,15 @@ namespace Tasks.Controllers.Api
     {
         public IDbContext Context { get; set; }
 
-        protected TResult ExecuteQuery<TResult>(IQuery<TResult> query)
+        protected async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
         {
-            return query.Execute(Context);
+            return await query.ExecuteAsync(Context);
         }
 
-        protected void ExecuteCommand(ICommand command)
+        protected async void ExecuteCommand(ICommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
-            command.Execute(Context);
+            await command.Execute(Context);
         }
     }
 }

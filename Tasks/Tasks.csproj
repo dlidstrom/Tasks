@@ -120,12 +120,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\AsyncFilter.cs" />
     <Compile Include="Data\Commands\AddTaskCommand.cs" />
     <Compile Include="Data\Commands\ChangeTaskCommand.cs" />
     <Compile Include="Data\Commands\DeleteTaskCommand.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
     <Compile Include="Controllers\Api\ApiControllerBase.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Data\Migrations\201402140854281_TaskModel_Task_Required.cs" />
+    <Compile Include="Data\Migrations\201402140854281_TaskModel_Task_Required.Designer.cs">
+      <DependentUpon>201402140854281_TaskModel_Task_Required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\201402140857250_TaskModel_Task_MaxLength.cs" />
+    <Compile Include="Data\Migrations\201402140857250_TaskModel_Task_MaxLength.Designer.cs">
+      <DependentUpon>201402140857250_TaskModel_Task_MaxLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\ContextInstaller.cs" />
     <Compile Include="Infrastructure\ControllerFactoryInstaller.cs" />
     <Compile Include="Infrastructure\ControllerInstaller.cs" />
@@ -170,7 +179,9 @@
     <Content Include="Content\bootstrap-3.0.3\js\bootstrap.min.js" />
     <Content Include="Content\app\initialdata.js" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -183,7 +194,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
@@ -198,6 +211,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Migrations\201402140854281_TaskModel_Task_Required.resx">
+      <DependentUpon>201402140854281_TaskModel_Task_Required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201402140857250_TaskModel_Task_MaxLength.resx">
+      <DependentUpon>201402140857250_TaskModel_Task_MaxLength.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

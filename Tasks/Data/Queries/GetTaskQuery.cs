@@ -1,5 +1,7 @@
 using System;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using Tasks.Data.Models;
 
 namespace Tasks.Data.Queries
@@ -17,11 +19,14 @@ namespace Tasks.Data.Queries
             this.task = task;
         }
 
-        public Result Execute(IDbContext context)
+        public async Task<Result> ExecuteAsync(IDbContext context)
         {
-            var local = context.Tasks.Local.SingleOrDefault(x => x.Task == task && x.Responsible.Name == responsible);
+            var local = context.Tasks.Local.SingleOrDefault(x => x.Task == task
+                && x.Responsible.Name == responsible);
             if (local != null) return new Result(local);
-            var existing = context.Tasks.SingleOrDefault(x => x.Task == task && x.Responsible.Name == responsible);
+
+            var existing = await context.Tasks.SingleOrDefaultAsync(x => x.Task == task
+                && x.Responsible.Name == responsible);
             return existing != null ? new Result(existing) : null;
         }
 
@@ -34,11 +39,11 @@ namespace Tasks.Data.Queries
                 Done = taskModel.Done;
             }
 
-            public string Responsible { get; set; }
+            public string Responsible { get; private set; }
 
-            public string Task { get; set; }
+            public string Task { get; private set; }
 
-            public bool Done { get; set; }
+            public bool Done { get; private set; }
         }
     }
 }

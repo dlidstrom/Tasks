@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Tasks.App_Start
+// ReSharper disable CheckNamespace
+namespace Tasks
+// ReSharper restore CheckNamespace
 {
     public static class RouteConfig
     {
