@@ -28,7 +28,8 @@ namespace Tasks.Data.Migrations
                 p => p.Name,
                 new Person("Daniel"),
                 new Person("Klas"),
-                new Person("Christoffer"));
+                new Person("Christoffer"),
+                new Person("Rickard"));
         }
     }
 }
