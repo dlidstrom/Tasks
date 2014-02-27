@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Tasks.Data.Commands;
@@ -16,10 +16,10 @@ namespace Tasks.Controllers.Api
             return await query.ExecuteAsync(Context);
         }
 
-        protected async void ExecuteCommand(ICommand command)
+        protected Task ExecuteCommand(ICommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
-            await command.Execute(Context);
+            return command.Execute(Context);
         }
     }
 }
