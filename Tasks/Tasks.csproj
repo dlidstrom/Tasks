@@ -178,6 +178,8 @@
     <Content Include="Content\bootstrap-3.0.3\js\bootstrap.js" />
     <Content Include="Content\bootstrap-3.0.3\js\bootstrap.min.js" />
     <Content Include="Content\app\initialdata.js" />
+    <Content Include="Content\img\connecta.jpg" />
+    <Content Include="Content\main.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
