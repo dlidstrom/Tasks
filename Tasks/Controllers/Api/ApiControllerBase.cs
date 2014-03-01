@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Tasks.Data.Commands;
@@ -11,9 +11,9 @@ namespace Tasks.Controllers.Api
     {
         public IDbContext Context { get; set; }
 
-        protected async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
+        protected Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
         {
-            return await query.ExecuteAsync(Context);
+            return query.ExecuteAsync(Context);
         }
 
         protected Task ExecuteCommand(ICommand command)
