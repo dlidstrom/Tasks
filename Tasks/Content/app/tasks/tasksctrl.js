@@ -27,6 +27,7 @@
                         responsible: $scope.responsible.name,
                         done: false
                     };
+                    $scope.saving = true;
                     taskService.create(task)
                         .then(function () {
                             $scope.tasks.push(task);
@@ -35,6 +36,10 @@
                             $scope.addingTask = false;
                             $scope.task = '';
                             $scope.responsible = '';
+
+                            $scope.saving = false;
+                        }, function () {
+                            $scope.saving = false;
                         });
                 };
 

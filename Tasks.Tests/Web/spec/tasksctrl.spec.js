@@ -74,29 +74,60 @@ describe('TaskCtrl', function () {
     });
 
     describe('addTask', function () {
-        beforeEach(function () {
-            scope.task = 'New task';
-            scope.responsible = { name: 'Someone responsible' };
-            scope.addTask();
+        describe('success', function () {
+            beforeEach(function () {
+                scope.task = 'New task';
+                scope.responsible = { name: 'Someone responsible' };
+                scope.addTask();
+            });
+            describe('saving flag', function () {
+                it('should set it', function () {
+                    expect(scope.saving).toBe(true);
+                });
+            });
+            describe('success callback', function () {
+                beforeEach(function () {
+                    // resolve all deferreds
+                    rootScope.$apply();
+                });
 
-            // resolve all deferreds
-            rootScope.$apply();
+                it('should add task', function () {
+                    expect(scope.tasks.length).toBe(2);
+                });
+
+                it('should set task description', function () {
+                    expect(scope.tasks[1].task).toBe('New task');
+                });
+
+                it('should set responsible', function () {
+                    expect(scope.tasks[1].responsible).toBe('Someone responsible');
+                });
+
+                it('should add unfinished task', function () {
+                    expect(scope.tasks[1].done).toBe(false);
+                });
+
+                it('should reset saving flag', function () {
+                    expect(scope.saving).toBe(false);
+                });
+            });
         });
 
-        it('should add task', function () {
-            expect(scope.tasks.length).toBe(2);
-        });
+        describe('failure', function () {
+            beforeEach(function () {
+                taskService.create = returnRejectedDeferred;
 
-        it('should set task description', function () {
-            expect(scope.tasks[1].task).toBe('New task');
-        });
+                scope.task = 'New task';
+                scope.responsible = { name: 'Someone responsible' };
+                scope.addTask();
 
-        it('should set responsible', function () {
-            expect(scope.tasks[1].responsible).toBe('Someone responsible');
-        });
+                // resolve all deferreds
+                rootScope.$apply();
+            });
 
-        it('should add unfinished task', function () {
-            expect(scope.tasks[1].done).toBe(false);
+            it('should reset saving flag', function () {
+                expect(scope.saving).toBe(false);
+            })
         });
     });
 
