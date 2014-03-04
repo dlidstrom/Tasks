@@ -16,11 +16,6 @@ namespace Tasks.Tests.Api.Infrastructure
 
         public IDbSet<TaskModel> Tasks { get; private set; }
 
-        public int SaveChanges()
-        {
-            return 0;
-        }
-
         public Task<int> SaveChangesAsync()
         {
             return Task.FromResult(0);

@@ -9,8 +9,6 @@ namespace Tasks.Data.Models
 
         IDbSet<TaskModel> Tasks { get; }
 
-        int SaveChanges();
-
         Task<int> SaveChangesAsync();
     }
 }
