@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Tasks.Tests.Api.Infrastructure
 {
-    internal class TestDbAsyncEnumerable<T> : EnumerableQuery<T>, IDbAsyncEnumerable<T>
+    internal class TestDbAsyncEnumerable<T> : EnumerableQuery<T>, IDbAsyncEnumerable<T>, IQueryable<T>
     {
         public TestDbAsyncEnumerable(IEnumerable<T> enumerable)
             : base(enumerable)
