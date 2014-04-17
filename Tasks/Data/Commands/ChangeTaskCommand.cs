@@ -15,6 +15,7 @@ namespace Tasks.Data.Commands
         {
             if (responsible == null) throw new ArgumentNullException("responsible");
             if (task == null) throw new ArgumentNullException("task");
+
             this.responsible = responsible;
             this.task = task;
             this.done = done;

@@ -1,3 +1,4 @@
+using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Tasks.Data.Models;
@@ -11,6 +12,9 @@ namespace Tasks.Data.Commands
 
         public AddTaskCommand(string responsible, string task)
         {
+            if (responsible == null) throw new ArgumentNullException("responsible");
+            if (task == null) throw new ArgumentNullException("task");
+
             this.responsible = responsible;
             this.task = task;
         }
@@ -18,7 +22,7 @@ namespace Tasks.Data.Commands
         public async Task Execute(IDbContext context)
         {
             var person = await context.Persons.SingleOrDefaultAsync(x => x.Name == responsible);
-            context.Tasks.Add(new TaskModel(task, person));
+            context.Tasks.Add(person.AddTask(task));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Tasks.Data.Commands
         {
             if (responsible == null) throw new ArgumentNullException("responsible");
             if (task == null) throw new ArgumentNullException("task");
+
             this.responsible = responsible;
             this.task = task;
         }
@@ -22,6 +23,7 @@ namespace Tasks.Data.Commands
         {
             var existingTask = await context.Tasks.SingleOrDefaultAsync(
                 x => x.Responsible.Name == responsible && x.Task == task);
+
             if (existingTask != null)
                 context.Tasks.Remove(existingTask);
         }
